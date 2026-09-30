@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sons.Of.Ash</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            SONS.OF.ASH
+        </div>
+
+        <div class="subtitle">
+            LOCAL INTELLIGENCE SYSTEM
+        </div>
+
+    </div>
+
+
+    <div class="header-right">
+
+        <div
+            id="ollama-status"
+            class="status connecting"
+        >
+
+            <span class="status-dot"></span>
+
+            <span id="status-text">
+                CONECTANDO...
+            </span>
+
+        </div>
+
+
+        <button
+            id="new-chat"
+            class="header-button"
+        >
+            ↻ NOVA CONVERSA
+        </button>
+
+    </div>
+
+</header>
+
+
+<main id="chat">
+
+    <div class="welcome">
+
+        <div class="welcome-logo">
+            SONS.OF.ASH
+        </div>
+
+        <div class="welcome-line"></div>
+
+        <p>
+            Sistema local conectado ao Ollama.
+        </p>
+
+        <span>
+            Programação • Desenvolvimento • Cibersegurança • Engenharia Reversa
+        </span>
+
+    </div>
+
+</main>
+
+
+<div
+    id="thinking"
+    class="thinking hidden"
+>
+
+    <span class="thinking-dot"></span>
+    <span class="thinking-dot"></span>
+    <span class="thinking-dot"></span>
+
+    <span>
+        Sons.Of.Ash está pensando...
+    </span>
+
+</div>
+
+
+<!-- ANEXO -->
+
+<div
+    id="attachment-area"
+    class="attachment-area hidden"
+>
+
+    <div class="attachment-preview">
+
+        <img
+            id="image-preview"
+            class="image-preview hidden"
+            alt="Pré-visualização"
+        >
+
+        <div
+            id="file-preview"
+            class="file-preview hidden"
+        >
+
+            <span class="file-icon">
+                📄
+            </span>
+
+            <div>
+
+                <div id="file-name">
+                    arquivo
+                </div>
+
+                <div id="file-size">
+                    0 KB
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="remove-attachment"
+            class="remove-attachment"
+            title="Remover anexo"
+        >
+            ×
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="input-wrapper">
+
+    <div class="input-area">
+
+        <!-- botão de arquivo -->
+
+        <button
+            id="attach"
+            class="attach-button"
+            title="Anexar arquivo"
+        >
+            📎
+        </button>
+
+
+        <input
+            id="file-input"
+            type="file"
+            hidden
+            accept="
+                image/*,
+                .txt,
+                .md,
+                .json,
+                .js,
+                .jsx,
+                .ts,
+                .tsx,
+                .py,
+                .html,
+                .css,
+                .sql,
+                .php,
+                .java,
+                .c,
+                .cpp,
+                .h,
+                .cs,
+                .go,
+                .rs,
+                .sh,
+                .bat,
+                .xml,
+                .yaml,
+                .yml,
+                .csv,
+                .log
+            "
+        >
+
+
+        <textarea
+            id="message"
+            placeholder="Digite sua mensagem... Você também pode colar uma imagem com Ctrl + V."
+            rows="1"
+            autocomplete="off"
+        ></textarea>
+
+
+        <button
+            id="stop"
+            class="stop-button hidden"
+            title="Parar geração"
+        >
+            ■
+        </button>
+
+
+        <button
+            id="send"
+            class="send-button"
+            title="Enviar"
+        >
+            ➤
+        </button>
+
+    </div>
+
+
+    <div class="input-info">
+
+        <span>
+            ENTER enviar
+        </span>
+
+        <span>
+            SHIFT + ENTER nova linha
+        </span>
+
+        <span>
+            📎 ARQUIVOS • CTRL + V IMAGEM
+        </span>
+
+        <span>
+            SONS.OF.ASH • LOCAL
+        </span>
+
+    </div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

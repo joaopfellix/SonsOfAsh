@@ -1,0 +1,1447 @@
+:root {
+    --bg: #050505;
+    --bg-2: #080808;
+    --panel: #0c0c0c;
+    --panel-2: #111111;
+    --border: #242424;
+
+    --red: #ff0000;
+    --red-soft: #ff3030;
+    --red-dark: #8f0000;
+
+    --green: #00ff66;
+    --yellow: #ffc400;
+
+    --white: #ffffff;
+    --text: #eeeeee;
+    --muted: #777777;
+    --muted-dark: #4d4d4d;
+}
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% -25%,
+            rgba(255, 0, 0, 0.10),
+            transparent 42%
+        ),
+        #050505;
+
+    color: var(--text);
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    width: 100%;
+    height: 72px;
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 26px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0d0d0d 0%,
+            #080808 100%
+        );
+
+    border-bottom: 1px solid #1e1e1e;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.45);
+
+    position: relative;
+    z-index: 20;
+}
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    color: #ffffff;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 17px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 12px
+        rgba(255, 0, 0, 0.25);
+}
+
+.logo::before {
+    content: ">";
+
+    margin-right: 9px;
+
+    color: var(--red);
+
+    text-shadow:
+        0 0 10px
+        rgba(255, 0, 0, 0.8);
+}
+
+.subtitle {
+    padding-left: 14px;
+
+    border-left: 1px solid #2a2a2a;
+
+    color: #555555;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1.7px;
+}
+
+/* =========================================
+   HEADER RIGHT
+========================================= */
+
+.header-right {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+/* =========================================
+   OLLAMA STATUS
+========================================= */
+
+.status {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #14b856;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #555555;
+}
+
+.status.online {
+    color: #14b856 !important;
+}
+
+.status.online .status-dot {
+    background: #00ff66 !important;
+
+    box-shadow:
+        0 0 6px #00ff66,
+        0 0 12px rgba(0, 255, 102, 0.7);
+}
+
+.status.offline {
+    color: #ff3030 !important;
+}
+
+.status.offline .status-dot {
+    background: #ff0000 !important;
+
+    box-shadow:
+        0 0 7px #ff0000;
+}
+
+.status.connecting {
+    color: #ffc400 !important;
+}
+
+.status.connecting .status-dot {
+    background: #ffc400 !important;
+
+    box-shadow:
+        0 0 8px rgba(255, 196, 0, 0.8);
+
+    animation:
+        statusPulse 1s infinite;
+}
+
+@keyframes statusPulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+/* =========================================
+   HEADER BUTTON
+========================================= */
+
+.header-button {
+    height: 34px;
+
+    padding: 0 13px;
+
+    border: 1px solid #292929;
+
+    border-radius: 7px;
+
+    background: #111111;
+
+    color: #888888;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.header-button:hover {
+    color: #ffffff;
+
+    background: #171717;
+
+    border-color: #3b3b3b;
+
+    transform: translateY(-1px);
+}
+
+.header-button:active {
+    transform: translateY(0);
+}
+
+/* =========================================
+   CHAT
+========================================= */
+
+#chat {
+    width: 100%;
+
+    height: calc(100vh - 72px);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding:
+        40px
+        max(20px, calc((100vw - 1000px) / 2))
+        155px;
+
+    scroll-behavior: smooth;
+}
+
+#chat::-webkit-scrollbar {
+    width: 7px;
+}
+
+#chat::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#chat::-webkit-scrollbar-thumb {
+    background: #252525;
+
+    border-radius: 20px;
+}
+
+#chat::-webkit-scrollbar-thumb:hover {
+    background: #383838;
+}
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.welcome {
+    width: 100%;
+
+    min-height: 55vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    pointer-events: none;
+}
+
+.welcome-logo {
+    color: #ffffff;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: clamp(
+        25px,
+        4vw,
+        42px
+    );
+
+    font-weight: 900;
+
+    letter-spacing:
+        clamp(
+            3px,
+            0.8vw,
+            8px
+        );
+
+    text-shadow:
+        0 0 25px
+        rgba(255, 0, 0, 0.16);
+}
+
+.welcome-line {
+    width: 90px;
+    height: 1px;
+
+    margin:
+        18px
+        0
+        17px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--red),
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 0, 0, 0.45);
+}
+
+.welcome p {
+    margin: 0 0 8px;
+
+    color: #bdbdbd;
+
+    font-size: 14px;
+}
+
+.welcome span {
+    color: #555555;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 0.6px;
+}
+
+/* =========================================
+   MENSAGENS
+========================================= */
+
+.message {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 26px;
+
+    animation:
+        messageIn 0.2s ease;
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   EU — BRANCO
+========================================= */
+
+.user-message {
+    align-items: flex-end;
+}
+
+.user-message::before {
+    content: "EU";
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #ffffff;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    opacity: 0.65;
+}
+
+.user-message .message-bubble {
+    max-width: min(820px, 85%);
+
+    background: transparent;
+
+    border: 0;
+
+    border-radius: 0;
+
+    padding:
+        3px
+        0;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    line-height: 1.65;
+
+    box-shadow: none;
+}
+
+/* =========================================
+   SONS OF ASH — VERMELHO
+========================================= */
+
+.ai-message,
+.assistant-message {
+    align-items: flex-start;
+}
+
+.ai-message::before,
+.assistant-message::before {
+    content: "SONS OF ASH";
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #ff3030;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 8px
+        rgba(255, 0, 0, 0.35);
+
+    animation:
+        ashLabel 2s infinite;
+}
+
+@keyframes ashLabel {
+    0%,
+    100% {
+        opacity: 0.75;
+    }
+
+    50% {
+        opacity: 1;
+
+        text-shadow:
+            0 0 12px
+            rgba(255, 0, 0, 0.65);
+    }
+}
+
+.ai-message .message-bubble,
+.assistant-message .message-bubble {
+    max-width: min(820px, 85%);
+
+    background: transparent;
+
+    border: 0;
+
+    border-radius: 0;
+
+    padding:
+        3px
+        0;
+
+    color: #ff3030;
+
+    font-size: 15px;
+
+    line-height: 1.65;
+
+    box-shadow: none;
+}
+
+.ai-message .message-bubble strong,
+.assistant-message .message-bubble strong {
+    color: #ff3030;
+}
+
+.ai-message .message-bubble h1,
+.ai-message .message-bubble h2,
+.ai-message .message-bubble h3,
+.assistant-message .message-bubble h1,
+.assistant-message .message-bubble h2,
+.assistant-message .message-bubble h3 {
+    color: #ff3030;
+}
+
+/* =========================================
+   MARKDOWN
+========================================= */
+
+.message-bubble h1,
+.message-bubble h2,
+.message-bubble h3 {
+    margin-top: 18px;
+    margin-bottom: 10px;
+}
+
+.message-bubble h1:first-child,
+.message-bubble h2:first-child,
+.message-bubble h3:first-child {
+    margin-top: 0;
+}
+
+.message-bubble h1 {
+    font-size: 23px;
+}
+
+.message-bubble h2 {
+    font-size: 20px;
+}
+
+.message-bubble h3 {
+    font-size: 17px;
+}
+
+.message-bubble strong {
+    color: inherit;
+}
+
+.message-bubble ul {
+    padding-left: 22px;
+}
+
+.message-bubble li {
+    margin-bottom: 5px;
+}
+
+.message-bubble code {
+    padding:
+        2px
+        6px;
+
+    border-radius: 5px;
+
+    background: #181818;
+
+    color: #ff4a4a;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+}
+
+/* =========================================
+   CODE
+========================================= */
+
+.code-wrapper {
+    margin: 14px 0;
+
+    overflow: hidden;
+
+    border:
+        1px solid #292929;
+
+    border-radius: 9px;
+
+    background: #070707;
+}
+
+.code-header {
+    height: 37px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    background: #101010;
+
+    border-bottom:
+        1px solid #242424;
+
+    color: #666666;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+}
+
+.copy-code {
+    padding:
+        5px
+        9px;
+
+    border:
+        1px solid #292929;
+
+    border-radius: 5px;
+
+    background: #171717;
+
+    color: #888888;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+.copy-code:hover {
+    background: #260000;
+
+    color: #ff4444;
+
+    border-color: #470000;
+}
+
+.code-wrapper pre {
+    margin: 0;
+
+    padding: 15px;
+
+    overflow-x: auto;
+
+    color: #dddddd;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.code-wrapper pre::-webkit-scrollbar {
+    height: 6px;
+}
+
+.code-wrapper pre::-webkit-scrollbar-thumb {
+    background: #292929;
+
+    border-radius: 20px;
+}
+
+/* =========================================
+   CURSOR DE GERAÇÃO
+========================================= */
+
+.stream-cursor {
+    display: inline-block;
+
+    width: 7px;
+    height: 17px;
+
+    margin-left: 4px;
+
+    vertical-align: middle;
+
+    background: #ff0000;
+
+    box-shadow:
+        0 0 7px #ff0000,
+        0 0 14px
+        rgba(255, 0, 0, 0.6);
+
+    animation:
+        ashCursor 0.7s infinite;
+}
+
+@keyframes ashCursor {
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    46%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   SONS OF ASH — PENSANDO
+========================================= */
+
+.thinking {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding:
+        2px
+        max(20px, calc((100vw - 1000px) / 2))
+        12px;
+
+    color: #ff3030;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 0.6px;
+
+    text-shadow:
+        0 0 8px
+        rgba(255, 0, 0, 0.35);
+
+    animation:
+        thinkingFade 1.4s infinite;
+}
+
+.thinking.hidden {
+    display: none;
+}
+
+.thinking-dot {
+    width: 4px;
+    height: 4px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #ff0000;
+
+    box-shadow:
+        0 0 6px #ff0000;
+
+    animation:
+        thinkingDot 1.2s infinite;
+}
+
+.thinking-dot:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.thinking-dot:nth-child(2) {
+    animation-delay: 0.18s;
+}
+
+.thinking-dot:nth-child(3) {
+    animation-delay: 0.36s;
+}
+
+@keyframes thinkingDot {
+    0%,
+    60%,
+    100% {
+        opacity: 0.2;
+
+        transform:
+            scale(0.7);
+    }
+
+    30% {
+        opacity: 1;
+
+        transform:
+            scale(1.35);
+    }
+}
+
+@keyframes thinkingFade {
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   ATTACHMENT AREA
+========================================= */
+
+.attachment-area {
+    width: 100%;
+
+    padding:
+        0
+        max(20px, calc((100vw - 1000px) / 2))
+        10px;
+}
+
+.attachment-area.hidden {
+    display: none;
+}
+
+.attachment-preview {
+    width: fit-content;
+    max-width: 100%;
+
+    min-height: 62px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        8px
+        10px;
+
+    position: relative;
+
+    background: #0d0d0d;
+
+    border:
+        1px solid #292929;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.3);
+}
+
+.image-preview {
+    display: block;
+
+    width: 80px;
+    height: 60px;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+
+    border:
+        1px solid #303030;
+}
+
+.image-preview.hidden {
+    display: none;
+}
+
+.file-preview {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 170px;
+
+    padding-right: 25px;
+}
+
+.file-preview.hidden {
+    display: none;
+}
+
+.file-icon {
+    font-size: 22px;
+}
+
+#file-name {
+    max-width: 240px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #dddddd;
+
+    font-size: 12px;
+}
+
+#file-size {
+    margin-top: 3px;
+
+    color: #666666;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 9px;
+}
+
+.remove-attachment {
+    width: 23px;
+    height: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+
+    top: 5px;
+    right: 5px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #191919;
+
+    color: #999999;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+.remove-attachment:hover {
+    background: #300000;
+
+    color: #ff4444;
+}
+
+/* =========================================
+   INPUT WRAPPER
+========================================= */
+
+.input-wrapper {
+    width: 100%;
+
+    padding:
+        12px
+        max(20px, calc((100vw - 1000px) / 2))
+        18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5, 5, 5, 0),
+            #050505 22%
+        );
+
+    position: relative;
+
+    z-index: 10;
+}
+
+/* =========================================
+   INPUT
+========================================= */
+
+.input-area {
+    width: 100%;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    padding: 8px;
+
+    background: #0d0d0d;
+
+    border:
+        1px solid #262626;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 10px 40px
+        rgba(0, 0, 0, 0.5);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.input-area:focus-within {
+    border-color:
+        rgba(255, 0, 0, 0.45);
+
+    box-shadow:
+        0 0 25px
+        rgba(255, 0, 0, 0.06);
+}
+
+#message {
+    flex: 1;
+
+    width: 100%;
+
+    min-height: 44px;
+    max-height: 180px;
+
+    resize: none;
+
+    border: 0;
+    outline: 0;
+
+    padding:
+        11px
+        10px;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+#message::placeholder {
+    color: #555555;
+}
+
+#message::-webkit-scrollbar {
+    width: 5px;
+}
+
+#message::-webkit-scrollbar-thumb {
+    background: #292929;
+
+    border-radius: 20px;
+}
+
+/* =========================================
+   ATTACH
+========================================= */
+
+.attach-button {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid #292929;
+
+    border-radius: 10px;
+
+    background: #151515;
+
+    color: #888888;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.attach-button:hover {
+    background: #1d1d1d;
+
+    border-color: #3a3a3a;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   STOP
+========================================= */
+
+.stop-button {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid #3b2020;
+
+    border-radius: 10px;
+
+    background: #171111;
+
+    color: #ff4444;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease;
+}
+
+.stop-button:hover {
+    background: #2a0000;
+
+    transform: translateY(-1px);
+}
+
+.stop-button.hidden {
+    display: none;
+}
+
+/* =========================================
+   SEND
+========================================= */
+
+.send-button {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0000,
+            #9e0000
+        );
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    box-shadow:
+        0 0 18px
+        rgba(255, 0, 0, 0.14);
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.send-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #ff2020,
+            #c00000
+        );
+
+    transform: translateY(-1px);
+}
+
+.send-button:active {
+    transform: translateY(0);
+}
+
+.send-button:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+/* =========================================
+   INPUT INFO
+========================================= */
+
+.input-info {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding:
+        8px
+        3px
+        0;
+
+    color: #444444;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: 0.5px;
+}
+
+.input-info span {
+    white-space: nowrap;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+    header {
+        height: 62px;
+        min-height: 62px;
+
+        padding: 0 14px;
+    }
+
+    .subtitle {
+        display: none;
+    }
+
+    .logo {
+        font-size: 14px;
+
+        letter-spacing: 1.4px;
+    }
+
+    .header-right {
+        gap: 10px;
+    }
+
+    .status {
+        font-size: 8px;
+    }
+
+    .header-button {
+        font-size: 9px;
+
+        padding: 0 9px;
+    }
+
+    #chat {
+        height: calc(100vh - 62px);
+
+        padding:
+            25px
+            12px
+            145px;
+    }
+
+    .message-bubble {
+        max-width: 92%;
+    }
+
+    .input-wrapper {
+        padding:
+            8px
+            10px
+            12px;
+    }
+
+    .input-info {
+        justify-content: center;
+    }
+
+    .input-info span:nth-child(1),
+    .input-info span:nth-child(2) {
+        display: none;
+    }
+
+    .welcome span {
+        max-width: 90%;
+
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .status {
+        display: none;
+    }
+
+    .header-button {
+        height: 32px;
+
+        padding: 0 8px;
+
+        font-size: 8px;
+    }
+
+    .welcome-logo {
+        font-size: 25px;
+    }
+
+    .welcome p {
+        font-size: 13px;
+    }
+
+    .message-bubble {
+        max-width: 95%;
+    }
+
+    .attach-button,
+    .stop-button,
+    .send-button {
+        width: 42px;
+        height: 42px;
+    }
+
+    .input-info {
+        font-size: 7px;
+    }
+
+    .input-info span:nth-child(3) {
+        display: none;
+    }
+}
+
+/* =========================================
+   FOCUS / SELECTION
+========================================= */
+
+::selection {
+    background:
+        rgba(255, 0, 0, 0.35);
+
+    color: #ffffff;
+}
+
+button:focus-visible,
+textarea:focus-visible {
+    outline:
+        1px solid
+        rgba(255, 0, 0, 0.7);
+
+    outline-offset: 2px;
+}
